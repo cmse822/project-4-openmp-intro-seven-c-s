@@ -5,23 +5,13 @@
 #include <chrono>
 #include <fstream>
 #include <vector>
-
-// Part 1 - Multiplying Two Matrices
-// Ian's Processor information:
-/*
-11th Gen Intel i7 (2.80 GHz)
-
-Sockets:    1
-Cores:      4
-L1 cache:   320  kB
-L2 cache:   5.0  MB
-L3 cache:   12.0 MB
-*/
+#include <omp.h> // Include OpenMP header
 
 using namespace std;
 
 vector<vector<double>> matrix_muliply(vector<vector<double>> matrixA, vector<vector<double>> matrixB, int m) {
     vector<vector<double>> C(m, vector<double>(m, 0.0));
+    #pragma omp parallel for
     for (int j = 0; j < m; ++j) {
         for (int i = 0; i < m; ++i) {
             for (int k = 0; k < m; ++k) 
@@ -33,14 +23,7 @@ vector<vector<double>> matrix_muliply(vector<vector<double>> matrixA, vector<vec
     return C;
 }
 
-// function that returns a vector of vectors (matrix)
 vector<vector<double>> generate_matrix(int m) {
-    // Initialize M, to be a vector of vectors with entries of 0.0
-    /*
-    vector<vector<double>> M is creating the empty vector of vectors called M
-    M(m, vector<double>(m, 0.0)) initializes the parent vector with entries of vectors
-    vector<double>(m,0.0) initializes those child vectors with 0.0
-    */
     vector<vector<double>> M(m, vector<double>(m, 0.0));
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < m; ++j) {
@@ -51,7 +34,6 @@ vector<vector<double>> generate_matrix(int m) {
 }
 
 int main() {
-    // make the dimensions of each matrix: A, B, C
     int totalSteps = 47;
 
     vector<int> N {2, 4, 8, 10, 15,
@@ -67,10 +49,9 @@ int main() {
 
     vector<int> timeTaken(totalSteps,0);
 
-    // Seeding C++'s random numbers
     srand(0);
 
-    ofstream myfile ("data_not100.txt");
+   // ofstream myfile ("data_not100.txt");
 
     myfile << "# Matrix Size";
     myfile << ", ";
@@ -83,21 +64,17 @@ int main() {
         auto A = generate_matrix(N[n]);
         auto B = generate_matrix(N[n]);    
 
-        // Starting high_resolution_clock before multiplication
-        // Implementation from https://www.geeksforgeeks.org/measure-execution-time-function-cpp/
         auto start = chrono::high_resolution_clock::now();
-        // multiply A and B to get matrix C
         auto C = matrix_muliply(A, B, N[n]);
-        // Stopping timer
         auto stop = chrono::high_resolution_clock::now();
-        long long duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+        auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
 
-        cout << "Time taken by matrix of size " << N[n] << " = " 
+        cout << "Time taken by matrix multiplication of size " << N[n] << " = " 
                     << duration.count() << " us" << endl;
-        timeTaken[n] = duration.count();
+
+        timeTaken[n] = static_cast<long long>(duration.count());
     }
 
-    // Writing to file:
     for(int n=0; n<totalSteps; n++) {
         long long operations; float time_taken;
         operations = (2*(N[n]*N[n]*N[n]) - N[n]*N[n]);
@@ -110,7 +87,6 @@ int main() {
         myfile << "\n";
     }
 
-    // display table of time taken vs size of matrix:
     cout << "N \t\t | t (micro s)";
     for(int i=0; i<totalSteps; i++) {
         cout << N[i] << '\t' << timeTaken[i] << endl;
