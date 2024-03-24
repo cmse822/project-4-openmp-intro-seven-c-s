@@ -5,7 +5,7 @@
 #include <chrono>
 #include <fstream>
 #include <vector>
-#include <omp.h> // Include OpenMP header
+#include <omp.h> 
 
 using namespace std;
 

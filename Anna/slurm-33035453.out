@@ -1,0 +1,66 @@
+Lmod Warning: Input module (gcc) not found, using module: GCC . . . (ICER v.) 
+
+
+Lmod Warning: Input module (openmpi) not found, using module: OpenMPI . . .
+(ICER v.) 
+
+
+Lmod Warning: Input module (hdf5) not found, using module: HDF5 . . . (ICER
+v.) 
+
+
+Lmod Warning: Input module (python) not found, using module: Python . . .
+(ICER v.) 
+
+
+Matrix Size: 20, Threads: 1
+Matrix Size: 20, Threads: 2
+Matrix Size: 20, Threads: 4
+Matrix Size: 20, Threads: 8
+Matrix Size: 20, Threads: 16
+Matrix Size: 20, Threads: 32
+Matrix Size: 20, Threads: 64
+Matrix Size: 100, Threads: 1
+Matrix Size: 100, Threads: 2
+Matrix Size: 100, Threads: 4
+Matrix Size: 100, Threads: 8
+Matrix Size: 100, Threads: 16
+Matrix Size: 100, Threads: 32
+Matrix Size: 100, Threads: 64
+Matrix Size: 1000, Threads: 1
+Matrix Size: 1000, Threads: 2
+Matrix Size: 1000, Threads: 4
+Matrix Size: 1000, Threads: 8
+Matrix Size: 1000, Threads: 16
+Matrix Size: 1000, Threads: 32
+Matrix Size: 1000, Threads: 64
+JobId=33035453 JobName=matrixmulti
+   UserId=brandlan(1051360) GroupId=besfem(2868) MCS_label=N/A
+   Priority=60073 Nice=0 Account=general QOS=brandlan
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:02:23 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2024-03-24T10:44:40 EligibleTime=2024-03-24T10:44:40
+   AccrueTime=2024-03-24T10:44:40
+   StartTime=2024-03-24T10:44:50 EndTime=2024-03-24T10:54:50 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2024-03-24T10:44:50 Scheduler=Main
+   Partition=general-short AllocNode:Sid=dev-intel16:27869
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=lac-079
+   BatchHost=lac-079
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=2G,node=1,billing=311
+   AllocTRES=cpu=1,mem=2G,node=1,billing=311
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=2G MinTmpDiskNode=0
+   Features=[intel14|intel16|intel18|(amr|acm)|nvf|nal|nif] DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/mnt/ufs18/home-252/brandlan/CMSE822/project-4-openmp-intro-seven-c-s/Anna/part1_batch.sb
+   WorkDir=/mnt/ufs18/home-252/brandlan/CMSE822/project-4-openmp-intro-seven-c-s/Anna
+   Comment=stdout=/mnt/ufs18/home-252/brandlan/CMSE822/project-4-openmp-intro-seven-c-s/Anna/slurm-33035453.out 
+   StdErr=/mnt/ufs18/home-252/brandlan/CMSE822/project-4-openmp-intro-seven-c-s/Anna/slurm-33035453.out
+   StdIn=/dev/null
+   StdOut=/mnt/ufs18/home-252/brandlan/CMSE822/project-4-openmp-intro-seven-c-s/Anna/slurm-33035453.out
+   Power=
+   
+
