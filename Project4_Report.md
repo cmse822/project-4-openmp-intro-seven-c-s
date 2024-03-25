@@ -16,9 +16,9 @@ for i = 1, N
 
 **1. Modify your MMM code from Project 1 to implement OpenMP threading by adding appropriate compiler directives to the outer loop of the MMM kernel. When compiling the OpenMP version of your code be sure to include the appropriate compiler flag (`-fopenmp` for GCC).**
 
+**2. Compute the time-to-solution of your MMM code for 1 thread (e.g., `export OMP_NUM_THREADS=1`) to the non-OpenMP version (i.e., compiled without the `-fopenmp` flag). Any matrix size `N` will do here. Does it perform as you expect? If not, consider the OpenMP directives you are using.**
 
-
-**2. When compiled without OpenMPI, the MMM took (on average) 0.00173s. When compiled with OpenMPI, and on a single thread, the MMM took (on average) 0.00181s. This difference could be explained by the overhead OpenMP thrusts onto the startup time for the computation.**
+ - When compiled without OpenMPI, the MMM took (on average) 0.00173s. When compiled with OpenMPI, and on a single thread, the MMM took (on average) 0.00181s. This difference could be explained by the overhead OpenMP thrusts onto the startup time for the computation.
 
 
 
@@ -28,22 +28,11 @@ for i = 1, N
 
 **4. Plot the times-to-solution for the MMM for each value of `N` separately as functions of the the thread count `T`. Compare the scaling of the MMM for different matrix dimensions.**
 
-**When N = 20**
+![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/bd882007-4dc3-4d24-b59c-31c3986bb08a)
+![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/4a8a8a57-b143-4b75-9b26-9876d068b6d1)
+![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/79bd9de8-925f-45e5-b756-da2c24f7079f)
 
-![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/85922017/665ae583-03c2-480a-bc86-acd40508e7ac)
-
-
-
-**When N = 100**
-
-![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/85922017/2bee961d-6299-450e-acd8-ea09a24086c2)
-
-
-
-**When N = 1000**
-
-![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/85922017/7a4654e6-aa27-4c75-80b2-33d46a7e2b3c)
-
+ - For very small (N=20) matrices, dramatically more threads would not actually speed up the computation beyond 12 or so processors. This is due to the messaging overhead of small messages. It would be faster to simply quickly compute the multiplicaiton on 10 threads than try to pass all the messages around. For the 100x100 and 1000x1000 cases, this would also happen, but we did not have access to enough threads for this limitation to become obvious from the trends. 
 
 **5. Verify that for the same input matrices that the solution does not depend on the number of threads.**
 
