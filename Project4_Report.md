@@ -36,8 +36,7 @@ for i = 1, N
  - For very small (N=20) matrices, dramatically more threads would not actually speed up the computation beyond 12 or so processors. This is due to the messaging overhead of small messages. It would be faster to simply quickly compute the multiplicaiton on 10 threads than try to pass all the messages around. For the 100x100 and 1000x1000 cases, this would also happen, but we did not have access to enough threads for this limitation to become obvious from the trends. 
 
 **5. Verify that for the same input matrices that the solution does not depend on the number of threads.**
-
-
+ - Verification was completed for many thread counts to ensure that the results were identical. Random entries were compared for small and large matrices alike.
 
 ## Part 2: Adding OpenMP threading to a simple MPI application
 
