@@ -12,7 +12,7 @@
 module purge
 module load gcc/7.3.0-2.30 OpenMPI HDF5
 
-for num in 1 2 4 8 12 16 20 24
+for num in 16 20 24
 do
     export OMP_NUM_THREADS=$num
     echo "# Running code with OMP_NUM_THREADS=" $num
