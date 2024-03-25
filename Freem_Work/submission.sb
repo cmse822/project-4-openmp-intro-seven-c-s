@@ -1,6 +1,6 @@
 #!/bin/bash
 ########## Define Resources Needed with SBATCH Lines ##########
-#SBATCH --time=00:10:00             # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --time=00:59:00             # limit of wall clock time - how long the job will run (same as -t)
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=24           # number of CPUs (or cores) per task (same as -c)
@@ -15,7 +15,7 @@ module load gcc/7.3.0-2.30 OpenMPI HDF5
 for num in 1 2 4 8 12 16 20 24
 do
     export OMP_NUM_THREADS=$num
-    echo "Running code with OMP_NUM_THREADS=" $num
-    ./MMM.exe 20
+    echo "# Running code with OMP_NUM_THREADS=" $num
+    ./MMM.exe 1000
 done
 scontrol show job $SLURM_JOB_ID     ### write job information to output file
