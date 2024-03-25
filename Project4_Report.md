@@ -41,7 +41,10 @@ Review the code labeled Hello_OMP.cpp in the Part 2 Folder to view these changes
 
 **2. Make sure to modify the `MPI_Init` call accordingly to allow for threads! What level of thread support do you need?**
 
-Need to still answer what level of thread support is needed.
+At least MPI_THREAD_FUNNELED is needed for support. Please see the below screenshot to understand why. Note that the following are monotonically increasing. SERIALIZED and MULTIPLE would also work. These notes are on page 301 of the textbook. 
+
+<img width="892" alt="Screenshot 2024-03-25 at 12 31 31 PM" src="https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/143351616/8e3ff691-d616-4ab0-9b92-f415428481e6">
+
 
 **3. Compile the code including the appropriate flag for OpenMP support. For a GCC-based MPI installation, this would be, e.g., `mpic++ -fopenmp hello.cpp`.**
 
