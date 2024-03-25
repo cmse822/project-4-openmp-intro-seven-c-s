@@ -11,7 +11,7 @@ for i = 1, N
       C[i,j] += A[i,k] * B[k,j]
 ```
 
-**Each of these loops is parallelizable, and could include the OpenMP flags to speed up this code, although we decided to put the flag before the first main loop ('for i = 1, N'). This produced reasonable outputs that match what we predicted.**
+**Each of these loops is parallelizable, and could include the OpenMP flags to speed up this code, although we decided to put the flag before the first main loop (`for i = 1, N`). This produced reasonable outputs that match what we predicted.**
 
 
 **1. Modify your MMM code from Project 1 to implement OpenMP threading by adding appropriate compiler directives to the outer loop of the MMM kernel. When compiling the OpenMP version of your code be sure to include the appropriate compiler flag (`-fopenmp` for GCC).**
