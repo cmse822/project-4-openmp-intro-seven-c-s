@@ -24,7 +24,8 @@ for i = 1, N
 
 **3. Perform a thread-to-thread speedup study of your MMM code either on your laptop or HPCC. Compute the total time to solution for a few thread counts (in powers of 2): `1,2,4,...T`, where T is the maximum number of threads available on the machine you are using. Do this for matrix sizes of `N=20,100,1000`.**
 
-
+ - The 20x20 MMM does *not* exhibit strong scaling, but the 100x100 and 1000x1000 cases are linear, as seen by their speedup graphs below. This indicates that the larger the matrix size, the more parallelizable the multiplication.
+![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/073d9780-0392-4016-8ed3-9135cff5fd2d)  ![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/a5ce3476-9525-424c-8b92-625faa1915de)  ![image](https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/66758039/0580a7fb-eb4e-4b72-b284-01956f41c4fa)
 
 **4. Plot the times-to-solution for the MMM for each value of `N` separately as functions of the the thread count `T`. Compare the scaling of the MMM for different matrix dimensions.**
 
