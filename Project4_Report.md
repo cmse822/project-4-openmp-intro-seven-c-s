@@ -18,7 +18,7 @@ for i = 1, N
 
 
 
-**2. Compute the time-to-solution of your MMM code for 1 thread (e.g., `export OMP_NUM_THREADS=1`) to the non-OpenMP version (i.e., compiled without the `-fopenmp` flag). Any matrix size `N` will do here. Does it perform as you expect? If not, consider the OpenMP directives you are using.**
+**2. When compiled without OpenMPI, the MMM took (on average) 0.00173s. When compiled with OpenMPI, and on a single thread, the MMM took (on average) 0.00181s. This difference could be explained by the overhead OpenMP thrusts onto the startup time for the computation.**
 
 
 
