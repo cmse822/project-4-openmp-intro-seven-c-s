@@ -11,7 +11,7 @@ for i = 1, N
       C[i,j] += A[i,k] * B[k,j]
 ```
 
-**Each of these loops is parallelizable, and could include the OpenMP flags to speed up this code, although we decided to put the flag before the first main loop (`for i = 1, N`). This produced reasonable outputs that match what we predicted.**
+Each of these loops is parallelizable, and could include the OpenMP flags to speed up this code, although we decided to put the flag before the first main loop (`for i = 1, N`). This produced reasonable outputs that match what we predicted.
 
 
 **1. Modify your MMM code from Project 1 to implement OpenMP threading by adding appropriate compiler directives to the outer loop of the MMM kernel. When compiling the OpenMP version of your code be sure to include the appropriate compiler flag (`-fopenmp` for GCC).**
@@ -77,6 +77,16 @@ Hello world from processor dev-intel16, rank 0 out of 2 processors, thread 1 out
 
 **1. Add MPI to  you OpenMP MMM code by distributing the rows of one of the input matrices across MPI ranks. Have each MPI rank perform its portion of the MMM using OpenMP threading. Think very carefully about the structure of the main MMM loops! Once done, gather the resulting matrix on rank 0 and output the result. Verify that for the same input matrices the result does not depend on either the number of MPI ranks or the number of OpenMP threads per rank.**
 
+When printing out the matrices that are shown in the code labeled hybrid.cpp in the Part 3 folder, you will find the output matrix C has the same result regardless of the number of MPI ranks or the number of OpenMP threads per rank.
+
 
 **2. On HPCC, carry out a performance study in which you vary the number of MPI ranks, the number of OpenMP threads per rank, and the matrix size. Make plots showing the times to solution for the various cases. Explain your results.**
+
+<img width="637" alt="Screenshot 2024-03-26 at 2 30 04 PM" src="https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/143351616/4f6e2fb2-fe7d-478f-87e1-aa12d2436611">
+
+<img width="637" alt="Screenshot 2024-03-26 at 2 31 45 PM" src="https://github.com/cmse822/project-4-openmp-intro-seven-c-s/assets/143351616/6fbabc07-952b-45fd-b572-555f83997b6f">
+
+As the rank increases and the thread count increases, the time is decreasing. You can see this in both examples shown above for the 500x500 and 1000x1000 matrix. This makes sense as the "work" is spread out among ranks and threads. 
+
+
 
