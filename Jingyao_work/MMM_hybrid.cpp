@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define N 100 // Matrix size
+#define N 20 // Matrix size
 
 void matrix_multiply(double A[N][N], double B[N][N], double C[N][N]) {
     #pragma omp parallel for
@@ -49,7 +49,22 @@ int main(int argc, char *argv[]) {
             0, MPI_COMM_WORLD);
     if (rank == 0) {
         // Print or save the final_result matrix
-    }
+        FILE *file = fopen("result_matrix.txt", "w");
+        if (file == NULL) {
+            perror("Error opening file");
+            return 1;
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                fprintf(file, "%lf ", final_result[i][j]);
+            }
+            fprintf(file, "\n");
+        }
+
+        fclose(file);
+            
+        }
     MPI_Finalize();
     return 0;
 }
