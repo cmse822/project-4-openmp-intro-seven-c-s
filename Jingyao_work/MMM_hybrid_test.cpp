@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     // Gather results on rank 0
     double C[N][N];
     MPI_Gather(local_C.data(), rows_per_rank * N, MPI_DOUBLE, C, rows_per_rank * N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-    
+
     double end_time = omp_get_wtime();  
     // Output and verification (on rank 0)
     if (rank == 0) {
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
             std::cout << std::endl;
         }
     }
-
+    printf("Time taken: %f seconds\n", end_time - start_time);
     MPI_Finalize();
     return 0;
 }
