@@ -9,7 +9,6 @@ void matrix_multiply(double A[N][N], double B[N][N], double C[N][N]) {
     #pragma omp parallel for
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            C[i][j] = 0.0;
             for (int k = 0; k < N; k++) {
                 C[i][j] += A[i][k] * B[k][j];
             }
@@ -18,6 +17,8 @@ void matrix_multiply(double A[N][N], double B[N][N], double C[N][N]) {
 }
 
 int main(int argc, char *argv[]) {
+    srand(42);
+
     MPI_Init(&argc, &argv);
     int rank, size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -30,10 +31,10 @@ int main(int argc, char *argv[]) {
     double A[N][N], B[N][N], C[N][N];
 
     // Initialize matrices A and B
-    for (int i = start_row; i < end_row; i++) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            A[i][j] = rand() % 10;
-            B[i][j] = rand() % 10;
+            A[i][j] = 1 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2 - 1)));
+            B[i][j] = 1 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / (2 - 1)));
         }
     }
 
